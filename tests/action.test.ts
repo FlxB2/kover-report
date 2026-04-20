@@ -60,7 +60,7 @@ describe('Action functions', () => {
 
     await run(core, github)
 
-    expect(setOutputMock).toHaveBeenNthCalledWith(1, 'coverage-overall', 42.5)
+    expect(setOutputMock).toHaveBeenNthCalledWith(1, 'coverage-overall', 28.57)
     expect(setOutputMock).toHaveBeenNthCalledWith(
       2,
       'coverage-changed-files',
@@ -68,7 +68,7 @@ describe('Action functions', () => {
     )
     expect(createIssueCommentMock).toHaveBeenCalledWith({
       issue_number: 12,
-      body: `|File|Coverage [75.00%]|\n|:-|:-:|\n|[pkg/Foo.kt](foo-url)|75.00%|\n\n|Total Project Coverage|42.50%|\n|:-|:-:|`,
+      body: `|File|Coverage [75.00%]|\n|:-|:-:|\n|[pkg/Foo.kt](foo-url)|75.00%|\n\n|Total Project Coverage|28.57%|\n|:-|:-:|`,
       owner: 'owner',
       repo: 'repo'
     })
@@ -129,7 +129,7 @@ describe('Action functions', () => {
 
     await run(core, github)
 
-    expect(setOutputMock).toHaveBeenNthCalledWith(1, 'coverage-overall', 42.5)
+    expect(setOutputMock).toHaveBeenNthCalledWith(1, 'coverage-overall', 28.57)
     expect(setOutputMock).toHaveBeenNthCalledWith(
       2,
       'coverage-changed-files',
@@ -137,7 +137,7 @@ describe('Action functions', () => {
     )
     expect(createIssueCommentMock).toHaveBeenCalledWith({
       issue_number: 12,
-      body: `|File|Coverage [75.00%]|\n|:-|:-:|\n|[pkg/Foo.kt](foo-url)|75.00%|\n\n|Total Project Coverage|42.50%|\n|:-|:-:|`,
+      body: `|File|Coverage [75.00%]|\n|:-|:-:|\n|[pkg/Foo.kt](foo-url)|75.00%|\n\n|Total Project Coverage|28.57%|\n|:-|:-:|`,
       owner: 'owner',
       repo: 'repo'
     })

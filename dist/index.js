@@ -50,7 +50,6 @@ const run = async (core, github) => {
         percentage: 0,
         files: []
     };
-    const totalReports = reportPaths.length;
     for (const path of reportPaths) {
         const report = await (0, reader_1.parseReport)(path);
         if (!report) {
@@ -59,11 +58,11 @@ const run = async (core, github) => {
         const reportsCoverage = (0, reader_1.getOverallCoverage)(report, counterType);
         overallCoverage.missed += reportsCoverage?.missed ?? 0;
         overallCoverage.covered += reportsCoverage?.covered ?? 0;
-        overallCoverage.percentage += reportsCoverage?.percentage ?? 0;
         const reportsFilesCovered = (0, reader_1.getFileCoverage)(report, changedFiles, counterType);
         overallFilesCoverage.files = overallFilesCoverage.files.concat(reportsFilesCovered.files);
     }
-    overallCoverage.percentage = overallCoverage.percentage / totalReports;
+    const overallTotal = overallCoverage.covered + overallCoverage.missed;
+    overallCoverage.percentage = Number.parseFloat((overallTotal === 0 ? 100 : (overallCoverage.covered / overallTotal) * 100).toFixed(2));
     overallFilesCoverage.percentage =
         (0, reader_1.getTotalPercentage)(overallFilesCoverage.files) ?? 0;
     if (!overallCoverage) {
